@@ -44,8 +44,8 @@ if TopHall==0:print 'Door is open'
 if BottomHall==1:print 'No magnet sensed on lock'
 if TopHall==1:print 'No magnet sensed top'
 
-if 0==0: #Debug Code
-#if BottomHall==0: #Door is locked
+#if 0==0: #Debug Code
+if BottomHall==0: #Door is locked
         print 'The door is locked!'
         print 'The door is going up!'
         while TopHall==1 and runTime<10:
