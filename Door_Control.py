@@ -5,6 +5,12 @@ import signal
 import sys
 import httplib, urllib #for Push Notifications
 
+#config.txt included in .gitignore first line is the token, the second line is the key
+config = open('config.txt').readlines()
+pushover_token=config[0].rstrip()
+pushover_user=config[1]
+
+
 #Setting up Board GPIO Pins
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(35,GPIO.OUT)
@@ -24,8 +30,10 @@ def PushOver(message):
     conn = httplib.HTTPSConnection("api.pushover.net:443")
     conn.request("POST", "/1/messages.json",
       urllib.urlencode({
-        "token": "aTAy7hR4xzxS2wHMnjp9T9Su27ympR",
-        "user": "ZTtigHxQndwJ0pDyCNbtJ7Y7JSsWit",
+	  #I know, I know no keys in source control. Sheesh.
+          #The old keys no longer work
+        "token": pushover_token,
+        "user": pushover_user,
         "message": message,
       }), { "Content-type": "application/x-www-form-urlencoded" })
     conn.getresponse()
